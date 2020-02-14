@@ -54,7 +54,9 @@ public class AuthorizeController {
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
             response.addCookie(new Cookie("token", token));
+            return "redirect:/";
+        }else{
+            return "redirect:/";
         }
-        return "redirect:/";
     }
 }
