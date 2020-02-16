@@ -1,12 +1,14 @@
 package com.fredy.community.controller;
 
-import com.fredy.community.mappper.QuestionMapper;
+import com.fredy.community.dto.QuestionDTO;
 import com.fredy.community.model.Question;
 import com.fredy.community.model.User;
+import com.fredy.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,8 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PublishController {
-    @Autowired(required = false)
-    private QuestionMapper questionMapper;
+    @Autowired
+    private QuestionService questionService;
 
     @GetMapping("/publish")
     public String publish(){
@@ -27,6 +29,7 @@ public class PublishController {
             @RequestParam(required = false, value = "title") String title,
             @RequestParam(required = false, value = "description") String description,
             @RequestParam(required = false, value = "tag") String tag,
+            @RequestParam(required = false, value = "id") Integer id,
             HttpServletRequest request,
             Model model){
         model.addAttribute("title", title);
@@ -59,7 +62,19 @@ public class PublishController {
         question.setCreator(user.getId());
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
-        questionMapper.create(question);
+        question.setId(id);
+        questionService.createOrUpdate(question);
         return "redirect:/";
+    }
+
+    @GetMapping("/publish/{id}")
+    public String edit(@PathVariable(name = "id") Integer id,
+                       Model model){
+        QuestionDTO question = questionService.getById(id);
+        model.addAttribute("title", question.getTitle());
+        model.addAttribute("description", question.getDescription());
+        model.addAttribute("tag", question.getTag());
+        model.addAttribute("id", question.getId());
+        return "publish";
     }
 }

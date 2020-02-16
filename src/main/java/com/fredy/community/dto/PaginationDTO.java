@@ -20,17 +20,25 @@ public class PaginationDTO {
         this.page = page;
         this.totalPage = totalPage;
         pages.add(page);
-        for(int i = 1; i <= 3; i++){
-            if(page - i > 0){
-                pages.add(0, page - i);
+        if(page != 0){
+            for(int i = 1; i <= 3; i++){
+                if(page - i > 0){
+                    pages.add(0, page - i);
+                }
+                if(page + i <= totalPage){
+                    pages.add(page + i);
+                }
             }
-            if(page + i <= totalPage){
-                pages.add(page + i);
-            }
+            showPrevious = page != 1;
+            showNext = page != totalPage;
+            showFirstPage = !pages.contains(1);
+            showEndPage = !pages.contains(totalPage);
+        }else{
+            showPrevious = false;
+            showNext = false;
+            showFirstPage = false;
+            showEndPage = false;
         }
-        showPrevious = page != 1;
-        showNext = page != totalPage;
-        showFirstPage = !pages.contains(1);
-        showEndPage = !pages.contains(totalPage);
+
     }
 }
