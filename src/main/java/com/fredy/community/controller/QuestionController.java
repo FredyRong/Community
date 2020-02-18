@@ -1,8 +1,8 @@
 package com.fredy.community.controller;
 
-import com.fredy.community.dto.CommentCreateDTO;
 import com.fredy.community.dto.CommentDTO;
 import com.fredy.community.dto.QuestionDTO;
+import com.fredy.community.enums.CommentTypeEnum;
 import com.fredy.community.service.CommentService;
 import com.fredy.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class QuestionController {
     @GetMapping("/question/{id}")
     public String question(@PathVariable(name = "id") Long id, Model model){
         QuestionDTO questionDTO = questionService.getById(id);
-        List<CommentDTO> comments = commentService.listByQuestionId(id);
+        List<CommentDTO> comments = commentService.listByTargetId(id, CommentTypeEnum.Question);
         questionService.incView(id);
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", comments);
