@@ -55,24 +55,41 @@ function collapseComments(e) {
     if (comment.hasClass("in")) {
         comment.removeClass("in");
         span.removeClass("icon_active");
+        $(comment.children(":first")).remove();
     } else {
+        let commentContainer = $("#comment-" + id);
         $.getJSON("/comment/" + id, function (data) {
-            let commentBody = $("#comment-body-" + id);
-            let items = [];
-
-            $.each(data.data, function (comment) {
-                let c = $("<div>", {
-                    "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12 comment",
+            $.each(data.data.reverse(), function (index, comment) {
+                let mediaLeftElement = $("<div/>", {
+                    "class": "media-left"
+                }).append($("<img/>", {
+                    "class": "media-object img-rounded",
+                    "src": comment.user.avatarUrl
+                }));
+                let mediaBodyElement = $("<div/>", {
+                    "class": "media-body"
+                }).append($("<h6/>", {
+                    "class": "media-heading",
+                    html: comment.user.name
+                })).append($("<div/>", {
                     html: comment.content
-                });
-                items.push(c);
-            });
-            $("<div>", {
-                "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments",
-                "id": "comment-" + id,
-                html: items.join("")
-            }).appendTo(commentBody);
+                })).append($("<div/>", {
+                    "class": "menu",
+                }).append($("<span/>", {
+                    "class": "pull-right",
+                    html: moment(comment.gmtCreate).format("YYYY-MM-DD")
+                })));
 
+                let mediaElement = $("<div/>", {
+                    "class": "media"
+                }).append(mediaLeftElement).append(mediaBodyElement);
+
+                let commentElement = $("<div/>", {
+                    "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12 comments"
+                }).append(mediaElement);
+
+                commentContainer.prepend(commentElement);
+            });
             comment.addClass("in");
             span.addClass("icon_active");
         })

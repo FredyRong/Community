@@ -1,0 +1,1 @@
+table COMMENT add comment_count varchar(1024) null;
