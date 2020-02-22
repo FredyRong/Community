@@ -3,6 +3,7 @@ package com.fredy.community.interception;
 import com.fredy.community.mapper.UserMapper;
 import com.fredy.community.model.User;
 import com.fredy.community.model.UserExample;
+import com.fredy.community.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,8 +16,10 @@ import java.util.List;
 
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
+    @Autowired
+    private NotificationService notificationService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -31,6 +34,8 @@ public class SessionInterceptor implements HandlerInterceptor {
                     List<User> users = userMapper.selectByExample(userExample);
                     if (users.size() != 0) {
                         request.getSession().setAttribute("user", users.get(0));
+                        Long unreadCount = notificationService.unreadCount(users.get(0).getId());
+                        request.getSession().setAttribute("unreadCount", unreadCount);
                     }
                     break;
                 }
