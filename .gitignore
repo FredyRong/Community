@@ -1,5 +1,5 @@
 HELP.md
-target/
+/target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
@@ -26,6 +26,8 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
+**/src/main/resources/application.properties
+logs/
 
 ### VS Code ###
 .vscode/

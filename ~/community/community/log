@@ -1,0 +1,26 @@
+2020-02-23 16:46:11.461  INFO 11084 --- [restartedMain] c.fredy.community.CommunityApplication   : Starting CommunityApplication on LAPTOP-PUV054KP with PID 11084 (F:\idea-workspace\community\target\classes started by Fredy in F:\idea-workspace\community)
+2020-02-23 16:46:11.462  INFO 11084 --- [restartedMain] c.fredy.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2020-02-23 16:46:11.956  INFO 11084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8887 (http)
+2020-02-23 16:46:11.957  INFO 11084 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-23 16:46:11.957  INFO 11084 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-23 16:46:11.959  INFO 11084 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-02-23 16:46:11.960  INFO 11084 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-02-23 16:46:11.961  INFO 11084 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-02-23 16:46:11.961  INFO 11084 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-02-23 16:46:11.994  INFO 11084 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-23 16:46:11.995  INFO 11084 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 530 ms
+2020-02-23 16:46:12.014  INFO 11084 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2020-02-23 16:46:12.075  INFO 11084 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2020-02-23 16:46:12.075  INFO 11084 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:~/community'
+2020-02-23 16:46:12.425  INFO 11084 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-23 16:46:12.447  INFO 11084 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-02-23 16:46:12.573  INFO 11084 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-02-23 16:46:12.591  INFO 11084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8887 (http) with context path ''
+2020-02-23 16:46:12.591  INFO 11084 --- [restartedMain] c.fredy.community.CommunityApplication   : Started CommunityApplication in 1.172 seconds (JVM running for 1185.072)
+2020-02-23 16:46:12.593  INFO 11084 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-02-23 16:46:12.603  INFO 11084 --- [http-nio-8887-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-23 16:46:12.604  INFO 11084 --- [http-nio-8887-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-23 16:46:12.606  INFO 11084 --- [http-nio-8887-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2020-02-23 16:50:24.456  INFO 11084 --- [Thread-14] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-02-23 16:50:24.457  INFO 11084 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2020-02-23 16:50:24.478  INFO 11084 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.

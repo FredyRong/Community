@@ -2,6 +2,7 @@ package com.fredy.community.service;
 
 import com.fredy.community.dto.PaginationDTO;
 import com.fredy.community.dto.QuestionDTO;
+import com.fredy.community.dto.QuestionQueryDTO;
 import com.fredy.community.exception.CustomizeErrorCode;
 import com.fredy.community.exception.CustomizeException;
 import com.fredy.community.mapper.QuestionExtMapper;
@@ -30,8 +31,14 @@ public class QuestionService {
     @Autowired(required = false)
     private QuestionExtMapper questionExtMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
-        Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
+    public PaginationDTO list(String search, Integer page, Integer size) {
+        if (StringUtils.isNotBlank(search)) {
+            String[] tags = StringUtils.split(search, " ");
+            search = Arrays.stream(tags).collect(Collectors.joining("|"));
+        }
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         Integer totalPage = (int) Math.ceil(totalCount / 1.0 / size);
 
         PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO<>();
@@ -40,7 +47,9 @@ public class QuestionService {
             page = Math.min(totalPage, page);
             Integer offset = size * (page - 1);
 
-            List<Question> questions = questionMapper.selectByExampleWithRowbounds(new QuestionExample(), new RowBounds(offset, size));
+            questionQueryDTO.setOffset(offset);
+            questionQueryDTO.setSize(size);
+            List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
             List<QuestionDTO> questionDTOList = new ArrayList<>();
             for (Question question : questions) {
                 User user = userMapper.selectByPrimaryKey(question.getCreator());

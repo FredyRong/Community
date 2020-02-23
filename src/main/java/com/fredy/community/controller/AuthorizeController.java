@@ -5,6 +5,7 @@ import com.fredy.community.dto.GithubUser;
 import com.fredy.community.model.User;
 import com.fredy.community.provider.GitHubProvider;
 import com.fredy.community.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
+@Slf4j
 public class AuthorizeController {
     @Autowired
     private GitHubProvider gitHubProvider;
@@ -55,6 +57,7 @@ public class AuthorizeController {
             response.addCookie(new Cookie("token", token));
             return "redirect:/";
         }else{
+            log.error("callback get github error {}", githubUser);
             return "redirect:/";
         }
     }

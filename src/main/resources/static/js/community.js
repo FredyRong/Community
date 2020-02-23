@@ -110,4 +110,8 @@ function selectTag(e) {
 
 function showSelectTag() {
     $("#select-tag").show();
+    let li = $("#select-tag").children(":first").children(":first");
+    li.addClass("active");
+    $(li.children(":first")).attr("aria-expanded", "true");
+    $(".tab-pane").eq(0).addClass("active");
 }
