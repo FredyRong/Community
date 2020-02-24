@@ -53,6 +53,7 @@ public class AuthorizeController {
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setAvatarUrl(githubUser.getAvatar_url());
+            user.setBio(githubUser.getBio());
             userService.creatOrUpdata(user);
             response.addCookie(new Cookie("token", token));
             return "redirect:/";
