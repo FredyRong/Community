@@ -99,7 +99,7 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>6.2.3</version>
+                <version>5.2.4</version>
                 <configuration>
                     <url>jdbc:mysql://10.9.28.103:3306/community</url>
                     <user>root</user>
